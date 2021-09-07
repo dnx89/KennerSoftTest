@@ -5,7 +5,7 @@ namespace KennerSoftTest\App\Interfaces;
 use KennerSoftTest\App\Classes\Robot;
 
 /**
- *
+ * Описание интрфейса для строителя
  * @author Dnx89
  */
 interface RobotBuilderInterface {
@@ -33,5 +33,5 @@ interface RobotBuilderInterface {
      * Метод по получению обьекта Robot исходя из заданых свойств
      */
 
-    public function getRobot(): Robot;
+    public function getRobot(): ?Robot;
 }
