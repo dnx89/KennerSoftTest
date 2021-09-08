@@ -6,9 +6,18 @@ use KennerSoftTest\App\Interfaces\RobotBuilderInterface;
 use KennerSoftTest\App\Classes\Robot;
 use Exception;
 
+/**
+ * Description of RobotBiulder
+ * Класс стоитель отвечает за создание робота с разными характеристиками
+ * 
+ * @author Dnx89
+ */
 class RobotBuilder implements RobotBuilderInterface {
 
     const
+            /*
+             * значение максимальных характеристик робота
+             */
             MAX_SPEED = 1000,
             MAX_WEIGHT = 1000,
             MAX_HEIGHT = 1000,
@@ -102,7 +111,7 @@ class RobotBuilder implements RobotBuilderInterface {
     }
 
     /*
-     * Метод по получению обьекта Robot исходя из заданых свойств
+     * Метод по получению обьекта Robot исходя из заданых свойств и обнуление настроек в дефолтное значение.
      */
 
     public function getRobot(): ?Robot {

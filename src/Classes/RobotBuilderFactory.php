@@ -8,10 +8,13 @@ use Exception;
 
 /**
  * Description of RobotBiulderFactory
- *
+ * Класс фабрики по производству роботов на основании заготово/шаблонов по определеной логике.
  * @author Dnx89
  */
 class RobotBuilderFactory implements RobotBuilderFactoryInterface {
+    /*
+     * Максимальное количество роботов котррое может создать фабрика за раз 
+     */
 
     const MAX_CREATE_ROBOT = 500;
 
@@ -19,6 +22,19 @@ class RobotBuilderFactory implements RobotBuilderFactoryInterface {
     protected $newRobot = null;
     protected $robotTemplate = array();
     protected $kitTemplates = array();
+
+    /*
+     * Метод по инициализации строителя 
+     */
+
+    public function setBuilder(RobotBuilderInterface $builder): RobotBuilderFactoryInterface {
+        $this->builder = $builder;
+        return $this;
+    }
+
+    /*
+     * Метод для сохранения шаблона робота для дальнейше с ним работы
+     */
 
     public function addRobotTemplate(string $name, Robot $robot): bool {
         try {
@@ -33,10 +49,9 @@ class RobotBuilderFactory implements RobotBuilderFactoryInterface {
         }
     }
 
-    public function setBuilder(RobotBuilderInterface $builder): RobotBuilderFactoryInterface {
-        $this->builder = $builder;
-        return $this;
-    }
+    /*
+     * Метод для получения/подготовки шаблонов робота для дальнейшей с ним работы 
+     */
 
     public function getRobotTemplate(string $name, int $count): RobotBuilderFactoryInterface {
         try {
@@ -57,6 +72,14 @@ class RobotBuilderFactory implements RobotBuilderFactoryInterface {
             return $this;
         }
     }
+
+    /*
+     * Метод для создания робота их ранее полученых шаблонов(набора шаблонов).
+     * По итогу возвращает:
+     * config - с какими параметрами создавались новые роботы 
+     * list - список ново-созданых роботов
+     * kit - набор шаблонов из которых были созданы новые роботы
+     */
 
     public function createRobot(int $count): ?\stdClass {
         try {
